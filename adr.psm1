@@ -71,6 +71,8 @@ Export-ModuleMember -Function 'Adr-Help'
 Export-ModuleMember -Function 'Adr-FindLastSequence'
 
 #Import-Module .\adr.psm1
+#Remove-Module adr
+#powershell –ExecutionPolicy Bypass
 
 #https://kevinmarquette.github.io/2017-05-27-Powershell-module-building-basics/
 #http://www.tomsitpro.com/articles/powershell-modules,2-846.html
