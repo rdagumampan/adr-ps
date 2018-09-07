@@ -40,12 +40,26 @@ function Adr-New ($title) {
 	#slugify title
 	$formattedTitle = "$nextSequenceNo-$title"
 	New-Item "doc\adr\$formattedTitle.md" -type file -force -value "
-	{adr-number} {adr-title}
-	{adr-status}
-	{adr-context}
-	{adr-decision}
-	{adr-consequences}
-	"
+# {sequence-no}. {friendly-title}
+ 
+Date: {yyyy--mm-dd}
+ 
+## Status
+ 
+{status}
+ 
+## Context
+
+{context} 
+ 
+## Decision
+ 
+{decision} 
+  
+## Consequences
+ 
+{consequences} 
+"
 }
 
 function Adr-Help(){
