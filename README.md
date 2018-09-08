@@ -27,8 +27,8 @@ ADR-PS is a powershell module you can import in a normal powershell session. The
 	```powershell
 	Directory: C:\play\adr-ps\doc\adr
 
-	Mode                LastWriteTime         Length Name
-	----                -------------         ------ ----
+	Mode           LastWriteTime         	     Length Name
+	----           -------------         	     ------ ----
 	-a----         9/8/2018     07:50            419 0001-record-architecture-decisions.md
 	-a----         9/8/2018     07:43            125 ReadMe.md	
 	```
