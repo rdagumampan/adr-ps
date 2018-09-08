@@ -18,10 +18,19 @@ ADR-PS is a powershell module you can import in a normal powershell session. The
 3. Create an ADR repository in the current script location
 	```powershell
 	/ Adr-Init
-	```
+	```	
 4. Create architecture decision record
 	```powershell
-	/ Adr-New "User powershell for creating ADR"
+	/ Adr-New "Record architecture decisions"	
+	```
+	
+	```powershell
+	Directory: C:\play\adr-ps\doc\adr
+
+	Mode                LastWriteTime         Length Name
+	----                -------------         ------ ----
+	-a----         9/8/2018     07:50            419 0001-record-architecture-decisions.md
+	-a----         9/8/2018     07:43            125 ReadMe.md	
 	```
 5. Help
 	```powershell
