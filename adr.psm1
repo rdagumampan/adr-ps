@@ -48,8 +48,7 @@ function Adr-New ([Parameter(Mandatory=$true)]$title) {
 	"
 
 	#create new adr record
-	New-Item "$destinationDirectory\$nextSequenceNo-$slugifiedTitle.md" -type file -force -value "
-# $nextSequenceNo. $title
+	New-Item "$destinationDirectory\$nextSequenceNo-$slugifiedTitle.md" -type file -force -value "# $nextSequenceNo. $title
  
 Date: $datePosted
  
