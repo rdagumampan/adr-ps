@@ -1,8 +1,8 @@
-# ADR Tools (WORK-IN-PROGRESS)
+# ADR-PS
 
 A Powershell based command-line tool for working with Lighweight Architecture Decision Records (ADRs).
 
-"Lightweight Architecture Decision Records is a technique for capturing important architectural decisions along with their context and consequences. We recommend storing these details in source control, instead of a wiki or website, as then they can provide a record that remains in sync with the code itself. - Thoughtworks"
+>"Lightweight Architecture Decision Records is a technique for capturing important architectural decisions along with their context and consequences. We recommend storing these details in source control, instead of a wiki or website, as then they can provide a record that remains in sync with the code itself. - Thoughtworks"
 
 ## Motivation
 
@@ -34,12 +34,12 @@ ADR-PS is a powershell module you can import in a normal powershell session. The
 
 ## Updating module
 
-	```powershell
-	/ powershell –ExecutionPolicy Bypass
-	/ Remove-Module adr
-	/ Import-Module .\adr.psm1
-	```
-	
+```powershell
+/ powershell –ExecutionPolicy Bypass
+/ Remove-Module adr
+/ Import-Module .\adr.psm1
+```
+
 ## References
 
 - http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions
