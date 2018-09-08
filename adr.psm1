@@ -32,7 +32,7 @@ function Adr-New ([Parameter(Mandatory=$true)]$title) {
 	$destinationDirectory = "doc\adr"	
 
 	#find the latest adr sequence
-	$latestFile = Get-ChildItem -Filter "*.md" -Name -File $destinationDirectory | Sort-Object | Select-Object -First 1
+	$latestFile = Get-ChildItem -Filter "*.md" -Name -File $destinationDirectory | Sort-Object -Descending | Select-Object -Skip 1 -First 1
 
 	$nextSequenceNo = "0000"
 	if ($latestFile -eq "ReadMe.md"){
