@@ -1,14 +1,21 @@
-
 #initalize adr folder
 function Adr-Init () {
 	Set-Location $PSScriptRoot;
 
-	#create adr folder
-	New-Item -ItemType Directory -Force -Path "doc\adr"
+	#create adr repo folder only if its not there yet
+	$destinationDirectory = "$PSScriptRoot\doc\adr"
+	if(!(Test-Path -Path $destinationDirectory )){
+		#create adr folder
+		New-Item -ItemType Directory -Force -Path "doc\adr"
 
-	#create readme.md file
-	New-Item "doc\adr\ReadMe.md" -type file -force -value "# Read Me
-	"
+		#create readme.md file
+		New-Item "doc\adr\ReadMe.md" -type file -force -value "# Adr
+
+Documentations of architecturally significant functional and non-functional decisions through out solution lifetime."
+	} else {
+		Write-Warning -Message "Adr target folder $destinationDirectory already exists"
+	}
+
 }
 
 #find the latest adr sequence
@@ -34,23 +41,26 @@ function Adr-New ($title) {
 	if ($latestFile -eq "ReadMe.md"){
 		$nextSequenceNo = "0001"
 	} else {
-		$nextSequenceNo = "0002"
+		$nextSequenceInt = [int]$latestFile.Substring(0,4) + 1
+		$nextSequenceNo = $nextSequenceInt.ToString("0000")
 	}
 
 	#slugify title
-	$formattedTitle = "$nextSequenceNo-$title"
-	New-Item "doc\adr\$formattedTitle.md" -type file -force -value "
-# {adr-sequence-no}. {adr-friendly-title}
+	$slugifiedTitle = $title.ToLower().Replace(" ","-")
+	$datePosted = Get-Date -Format "yyyy-mm-dd"
+
+	New-Item "doc\adr\$nextSequenceNo-$slugifiedTitle.md" -type file -force -value "
+# $nextSequenceNo. $title
  
-Date: {yyyy--mm-dd}
+Date: $datePosted
  
 ## Status
  
-{adr-status}
+Accepted
  
 ## Context
 
-{adr-context} 
+{adr-decision-context} 
  
 ## Decision
  
@@ -58,7 +68,7 @@ Date: {yyyy--mm-dd}
   
 ## Consequences
  
-{adr-consequences} 
+{adr-decision-consequences} 
 "
 }
 

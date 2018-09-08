@@ -32,6 +32,14 @@ ADR-PS is a powershell module you can import in a normal powershell session. The
 	/ Adr-Help
 	```
 
+## Updating module
+
+	```powershell
+	/ powershell –ExecutionPolicy Bypass
+	/ Remove-Module adr
+	/ Import-Module .\adr.psm1
+	```
+	
 ## References
 
 - http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions
