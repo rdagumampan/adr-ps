@@ -1,41 +1,38 @@
 #initalize adr folder
-function Adr-Init () {
+function Adr-Init ($path) {
 	Set-Location $PSScriptRoot;
+	
+	#default adr repostory root
+	$destinationDirectory = "doc\adr"
 
 	#create adr repo folder only if its not there yet
-	$destinationDirectory = "$PSScriptRoot\doc\adr"
+	if (-not ([string]::IsNullOrEmpty($path))){
+		$destinationDirectory = $path
+		$AdrDefaultFolder = $path		
+	}
+
 	if(!(Test-Path -Path $destinationDirectory )){
 		#create adr folder
-		New-Item -ItemType Directory -Force -Path "doc\adr"
+		New-Item -ItemType Directory -Force -Path $destinationDirectory
 
 		#create readme.md file
-		New-Item "doc\adr\ReadMe.md" -type file -force -value "# Adr
+		New-Item "$destinationDirectory\ReadMe.md" -type file -force -value "# Adr
 
 Documentations of architecturally significant functional and non-functional decisions through out solution lifetime."
 	} else {
 		Write-Warning -Message "Adr target folder $destinationDirectory already exists"
 	}
-
-}
-
-#find the latest adr sequence
-function Adr-FindLastSequence(){
-	$folderName = "doc\adr"	
-	$latestFile = Get-ChildItem -Filter "*.md" -Name -File $folderName | Sort-Object | Select-Object -First 1
-	if ($latestFile -eq "ReadMe.md"){
-		return "0000"
-	} else {
-		return "0001"
-	}
 }
 
 #create adr entry
-function Adr-New ($title) {
+function Adr-New ([Parameter(Mandatory=$true)]$title) {
 	Set-Location $PSScriptRoot;
 
+	#default adr repostory root
+	$destinationDirectory = "doc\adr"	
+
 	#find the latest adr sequence
-	$folderName = "doc\adr"	
-	$latestFile = Get-ChildItem -Filter "*.md" -Name -File $folderName | Sort-Object | Select-Object -First 1
+	$latestFile = Get-ChildItem -Filter "*.md" -Name -File $destinationDirectory | Sort-Object | Select-Object -First 1
 
 	$nextSequenceNo = "0000"
 	if ($latestFile -eq "ReadMe.md"){
@@ -49,14 +46,16 @@ function Adr-New ($title) {
 	$slugifiedTitle = $title.ToLower().Replace(" ","-")
 	$datePosted = Get-Date -Format "yyyy-MM-dd
 	"
-	New-Item "doc\adr\$nextSequenceNo-$slugifiedTitle.md" -type file -force -value "
+
+	#create new adr record
+	New-Item "$destinationDirectory\$nextSequenceNo-$slugifiedTitle.md" -type file -force -value "
 # $nextSequenceNo. $title
  
 Date: $datePosted
  
 ## Status
  
-Accepted
+{adr-decision-status}
  
 ## Context
 
@@ -75,14 +74,7 @@ Accepted
 function Adr-Help(){
 }
 
+#export modules to be made available in ps session
 Export-ModuleMember -Function 'Adr-Init'
 Export-ModuleMember -Function 'Adr-New'
 Export-ModuleMember -Function 'Adr-Help'
-Export-ModuleMember -Function 'Adr-FindLastSequence'
-
-#Import-Module .\adr.psm1
-#Remove-Module adr
-#powershell –ExecutionPolicy Bypass
-
-#https://kevinmarquette.github.io/2017-05-27-Powershell-module-building-basics/
-#http://www.tomsitpro.com/articles/powershell-modules,2-846.html
