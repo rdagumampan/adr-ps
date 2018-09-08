@@ -16,9 +16,9 @@ function Adr-FindLastSequence(){
 	$folderName = "doc\adr"	
 	$latestFile = Get-ChildItem -Filter "*.md" -Name -File $folderName | Sort-Object | Select-Object -First 1
 	if ($latestFile -eq "ReadMe.md"){
-		return "00"
+		return "0000"
 	} else {
-		return "01"
+		return "0001"
 	}
 }
 
@@ -30,35 +30,35 @@ function Adr-New ($title) {
 	$folderName = "doc\adr"	
 	$latestFile = Get-ChildItem -Filter "*.md" -Name -File $folderName | Sort-Object | Select-Object -First 1
 
-	$nextSequenceNo = "00"
+	$nextSequenceNo = "0000"
 	if ($latestFile -eq "ReadMe.md"){
-		$nextSequenceNo = "01"
+		$nextSequenceNo = "0001"
 	} else {
-		$nextSequenceNo = "02"
+		$nextSequenceNo = "0002"
 	}
 
 	#slugify title
 	$formattedTitle = "$nextSequenceNo-$title"
 	New-Item "doc\adr\$formattedTitle.md" -type file -force -value "
-# {sequence-no}. {friendly-title}
+# {adr-sequence-no}. {adr-friendly-title}
  
 Date: {yyyy--mm-dd}
  
 ## Status
  
-{status}
+{adr-status}
  
 ## Context
 
-{context} 
+{adr-context} 
  
 ## Decision
  
-{decision} 
+{adr-decision} 
   
 ## Consequences
  
-{consequences} 
+{adr-consequences} 
 "
 }
 
