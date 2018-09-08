@@ -8,7 +8,7 @@ A Powershell based command-line tool for working with [Lighweight Architecture D
 
 ADR-PS is a powershell module you can import in a normal powershell session. The default destination directory is `doc\adr`.
 
-1. Copy the adr.psm1 into your solution folder and changed the `doc\adr` into your desired directory.
+1. Copy the adr.psm1 into your solution folder and change the `doc\adr` into your desired directory.
 2. Open Powershell CLI and import module
 
 	```powershell
