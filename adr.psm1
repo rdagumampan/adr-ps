@@ -47,8 +47,8 @@ function Adr-New ($title) {
 
 	#slugify title
 	$slugifiedTitle = $title.ToLower().Replace(" ","-")
-	$datePosted = Get-Date -Format "yyyy-mm-dd"
-
+	$datePosted = Get-Date -Format "yyyy-MM-dd
+	"
 	New-Item "doc\adr\$nextSequenceNo-$slugifiedTitle.md" -type file -force -value "
 # $nextSequenceNo. $title
  
